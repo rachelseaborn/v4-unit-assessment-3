@@ -67,7 +67,9 @@ const ralph = new NPC('Ralph', 'human', 'Niceland', 'I\'m gonna wreck it!')
 */
 
 //CODE HERE
-
+let ralphsInfo = ralph.getInfo('Ralph', 'human')
+let ralphsDialogue = ralph.dialogue('Ralph', 'I\'m gonna wreck it!')
+let ralphsLocation = ralph.location
 //////////////////PROBLEM 3////////////////////
 
 /*
@@ -91,8 +93,29 @@ const ralph = new NPC('Ralph', 'human', 'Niceland', 'I\'m gonna wreck it!')
   Call your new class Player
 */
 
-//CODE HERE
+//CODE HERE - works in repl
+class Player extends Character {
+  constructor(name, type, healthLevel, attackLevel) {
+    super(name, type);
+    this.healthLevel = healthLevel;
+    this.attackLevel = attackLevel;
+  }
+  defend(amount) {
+    //player = this.name
+    this.healthLevel = this.healthLevel - amount;
+    if (this.healthLevel > 0) {
+      return obj = {
+        attackStrength: this.amount,
+        remainingHealth: this.healthLevel,
+        message: `${this.name} is still in the fight!`
+      }
+    } else {
+      return `${this.name} has been defeated!`
+    }
 
+  }
+
+}
 /*
     Next, we'll create two Players.
     Store the first in a variable called aang, his name should be 'Aang'
@@ -102,7 +125,8 @@ const ralph = new NPC('Ralph', 'human', 'Niceland', 'I\'m gonna wreck it!')
 */
 
 //CODE HERE
-
+let aang = new Player('Aang', 'airbender', 100, 100);
+let ozai = new Player('Ozai', 'firebender', 100, 0);
 /*
     Let's see how a fight between these two would go.
     Create a variable called 'battle' whose value is Ozai's
@@ -111,6 +135,7 @@ const ralph = new NPC('Ralph', 'human', 'Niceland', 'I\'m gonna wreck it!')
 */
 
 //CODE HERE
+let battle = ozai.defend(aang.attackLevel);
 
 //////////////////PROBLEM 4////////////////////
 
@@ -129,7 +154,18 @@ const ralph = new NPC('Ralph', 'human', 'Niceland', 'I\'m gonna wreck it!')
 */
 
 //CODE HERE
-
+class Hero extends Player {
+  constructor(name, type, healthLevel, attackLevel, superPowers) {
+    super(name, type, healthLevel, attackLevel);
+    this.superPowers = [];
+  }
+  addSuperPower(power) {
+    this.superPowers.push(power)
+  }
+  useSuperPower(index) {
+    return `${this.name} used ${this.superPowers[index]}!`
+  }
+}
 /*
   Create a hero named 'Fire Spitter' whose type is 'dragon'.
   Fire Spitter's healthLevel and attackLevels should both be 5000.
@@ -140,3 +176,11 @@ const ralph = new NPC('Ralph', 'human', 'Niceland', 'I\'m gonna wreck it!')
 */
 
 //CODE HERE
+let fireSpitter = new Hero('Fire Spitter', 'dragon', 5000, 5000);
+
+//for (i = 0; i < 4; i++) {}
+fireSpitter.addSuperPower('spitting fire')
+fireSpitter.addSuperPower('dematerializing')
+fireSpitter.addSuperPower('interdimensional travel')
+
+let fireSpitterAttack = fireSpitter.useSuperPower(0)
