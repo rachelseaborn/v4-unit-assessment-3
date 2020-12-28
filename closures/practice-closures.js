@@ -84,7 +84,7 @@ bathroomSwitch();
 //CODE HERE
 
 function plantTracker() {
-  let plant = fern;
+  let plant = 'fern';
   let height = 12;
 
   return {
